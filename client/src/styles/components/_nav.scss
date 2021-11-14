@@ -1,0 +1,187 @@
+
+$border: 1px solid red;
+
+.header {
+    // position: relative;
+    position: fixed;
+    width: 100%;
+    height: $nav-height;
+    z-index: 99;
+    transition: 0.5s ease-out;
+    top: 0;
+    left: 0;
+    background-color: $main-bg;
+
+
+    @include tablet {
+        height: $nav-tablet-height;
+    }
+
+    @include tab {
+        height: $nav-tablet-height;
+    }
+
+    @include mobile {
+        height: $nav-mobile-height;
+    }
+
+
+
+    .container {
+        @include flex(center, space-between);
+        color: #000;
+        height: 100%; 
+    }
+
+    // &.shrink {
+    //     height: $nav-shrink-height;
+    //     z-index: 100;
+
+    //     @include mobile {
+    //         height: $nav-mobile-height;
+    //     }
+    // }
+
+    &_hamburger {
+        display: none;
+        height: 100%;
+
+        @include tablet {
+            display: block;
+            @include flex(center, space-between);
+            
+
+        }
+
+        @include tab {
+            display: block;
+            @include flex(center, space-between);
+            
+
+        }
+
+        @include mobile {
+            width: 30px;
+            display: block;
+            @include flex(center, space-between);
+        }
+    }
+
+    &_logo {
+        cursor: pointer;
+        font-size: 2rem;
+        font-weight: 600;
+        
+
+        @include mobile {
+            font-size: 1.5rem;
+            font-weight: 700,
+        }
+
+        @include tab {
+            font-size: 2.5rem;
+            font-weight: 700,
+        }
+
+        @include tablet {
+            font-size: 2.5rem;
+            font-weight: 700,
+        }
+    }
+
+    &_nav {
+        @include flex(center, space-between);
+        margin-left: 20px;
+        height: 100%;
+       
+
+        &_links {
+            @include flex(center, space-between);
+        	font-size: 2rem;
+            display: inherit;
+            margin-right: 20px;
+            height: 100%;
+
+            
+            @include tablet {
+                display: none;
+            }
+
+            @include tab {
+                display: none;
+            }
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        &_cart {
+            @include flex(center, center);
+            height: 100%;
+
+            @include mobile {
+                width: 45px;
+               
+            }
+    
+    
+            &_number {
+                margin-left: -10px;
+                margin-top: 10px;
+                border-radius: 50%;
+                color: #fff;
+                background-color: red;
+                border: none;
+                width: 25px;
+                height: 25px;
+                padding: 5px;
+                @include flex(center, center);
+
+                // text-align: center;
+                // display: inline-block;
+    
+            }
+        }
+            
+    }
+
+ 
+    
+
+    .hidden { 
+            display: none; 
+    }
+
+    .sidemenu {
+        display: block;
+        position: fixed;
+        background-color: $main-bg;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+        height: 100%;
+        overflow: auto;
+        transition: 1.5s ease-out;
+       
+      
+
+
+        @include tablet {
+            top: $nav-tablet-height;
+
+        }
+
+        @include tab {
+            top: $nav-tablet-height;
+
+        }
+
+        @include mobile {
+            top: $nav-mobile-height;
+
+        }
+
+    }
+
+}

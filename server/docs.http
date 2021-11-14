@@ -1,0 +1,9 @@
+@baseUrl = http://localhost:4000/api/v1
+
+GET  {{baseUrl}}/users/
+Content-Type: application/json
+
+{
+    "username": "bottle1",
+    "password": "youngboss"
+}
