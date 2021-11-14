@@ -16,6 +16,7 @@ const usersRouter = require("./routes/user");
 const productsRouter = require("./routes/product");
 const ordersRouter = require("./routes/order");
 const cartsRouter = require("./routes/cart");
+const stripeRoute = require("/routes/stripe");
 
 const app = express();
 
@@ -55,6 +56,7 @@ app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/products", productsRouter);
 app.use("/api/v1/orders", ordersRouter);
 app.use("/api/v1/carts", cartsRouter);
+app.use("/api/v1/checkout", stripeRouter);
 
 const port = process.env.PORT || 4000;
 

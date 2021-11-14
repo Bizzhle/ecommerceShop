@@ -1,21 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { BsDashSquare, BsPlusSquare, BsDashLg, BsPlusLg } from "react-icons/bs";
 import { addProduct } from "../context/cartRedux";
 import { removeProduct } from "../context/cartRedux";
-
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { FaCcMastercard, FaCcPaypal, FaCcVisa, FaPaypal } from "react-icons/fa";
+import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
+import { useHistory } from "react-router";
+
+const KEY = process.env.REACT_APP_STRIPE;
 
 export default function Cart() {
   const quantity = useSelector((state) => state.cart.quantity);
   const products = useSelector((state) => state.cart.products);
   const total = useSelector((state) => state.cart.total);
   const price = useSelector((state) => state.cart.total);
+  const [stripeToken, setStripeToken] = useState(null);
+  const history = useHistory();
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await axios.post(
+          "http://localhost:4000/api/checkout/payment",
+          {
+            tokenId: stripeToken.id,
+            amount: total,
+          }
+        );
+        console.log(res.data);
+        history.push("/success");
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    stripeToken && makeRequest();
+  }, [stripeToken, history, total]);
+
+  const onToken = (token) => {
+    setStripeToken(token);
+    console.log(token);
+    // fetch('/save-stripe-token', {
+    //   method: 'POST',
+    //   body: JSON.stringify(token),
+    // }).then(response => {
+    //   response.json().then(data => {
+    //     alert(`We are in business, ${data.email}`);
+    //   });
+    // });
+  };
 
   console.log(products);
 
@@ -146,8 +184,19 @@ export default function Cart() {
               <p className="price">{products[0].products.price * quantity} €</p>
             </span>
           </div>
-
-          <button>Proceed to checkout</button>
+          <StripeCheckout
+            name="textilshop"
+            billingAddress
+            shippingAddress
+            description={`Your total is ${
+              products[0].products.price * quantity
+            }`}
+            amount={products[0].products.price * quantity}
+            roken={onToken}
+            stripeKey={KEY}
+          >
+            <button>Proceed to checkout</button>
+          </StripeCheckout>
         </div>
       </div>
     </div>

@@ -1,0 +1,12 @@
+FROM node
+
+LABEL description="Frontend for Webshopper"
+WORKDIR /app
+COPY ./package.json ./
+RUN npm install                                                     
+COPY . .
+RUN ls -l
+
+EXPOSE 3000
+
+CMD ["npm", "run",  "start"]
