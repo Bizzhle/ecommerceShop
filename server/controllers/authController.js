@@ -1,4 +1,4 @@
-const User = require("../models/Users");
+const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -8,6 +8,7 @@ function generateToken(user) {
       id: user.id,
       email: user.email,
       username: user.username,
+      isAdmin: user.isAdmin,
     },
     process.env.JWT_SEC,
     { expiresIn: "1h" }
@@ -80,8 +81,9 @@ exports.login = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  const hashpassword = await bcrypt.hash(password, 12);
   if (req.body.password) {
+    const hashpassword = await bcrypt.hash(password, 12);
+
     req.body.password = hashpassword;
   }
 

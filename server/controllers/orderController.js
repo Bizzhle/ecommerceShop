@@ -1,6 +1,4 @@
 const Order = require("../models/Order");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 
 exports.order_create = async (req, res) => {
   const newOrder = new Order(req.body);

@@ -1,5 +1,6 @@
 const express = require("express");
 const orderController = require("../controllers/orderController");
+
 const {
   verifyToken,
   verifyTokenAndAuthorization,
@@ -23,3 +24,5 @@ router.get(
 router.get("/", orderController.order_list);
 
 router.get("/income", verifyTokenAndAdmin, orderController.order_income);
+
+module.exports = router;

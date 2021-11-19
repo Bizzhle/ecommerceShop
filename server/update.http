@@ -1,0 +1,11 @@
+@baseUrl = http://localhost:4000/api/v1
+
+
+PUT  {{baseUrl}}/users/618fabee33e921d36af42c1b/update
+Content-Type: application/json
+token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGZhYmVlMzNlOTIxZDM2YWY0MmMxYiIsImVtYWlsIjoiYm90dGxlQGVtYWlsLmNvbSIsInVzZXJuYW1lIjoiYm90dGxlIiwiaWF0IjoxNjM2OTc1NzIxLCJleHAiOjE2MzY5NzkzMjF9.DLCQt7vc-jsfo2s17TzrpUL_39n1QBZLUL0Q2B56y_U
+{
+    "username": "bottle1",
+    "email": "bottle@email.com",
+    "password": "youngboss"
+}

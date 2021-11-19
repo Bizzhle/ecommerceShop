@@ -19,7 +19,7 @@ function App() {
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
-      <Route exact path="/sucsess" component={Success} />
+      <Route exact path="/success" component={Success} />
     </Router>
   );
 }

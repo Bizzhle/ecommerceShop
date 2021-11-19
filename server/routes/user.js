@@ -1,5 +1,6 @@
 const express = require("express");
 const authController = require("../controllers/authController");
+
 const {
   verifyToken,
   verifyTokenAndAuthorization,
@@ -8,15 +9,9 @@ const {
 
 const router = express.Router();
 
-router.get("/", function (req, res) {
-  res.send("<h2>Hi  We  on now ok !!!!!</h2>");
-});
-
 router.post("/register", authController.register);
 
 router.post("/login", authController.login);
-
-// router.post("/logout", authController.logout);
 
 router.put("/:id/update", verifyTokenAndAuthorization, authController.update);
 
@@ -26,7 +21,7 @@ router.delete(
   authController.delete
 );
 
-router.get("find/:id", verifyTokenAndAdmin, authController.user_detail);
+router.get("/find/:id", verifyTokenAndAdmin, authController.user_detail);
 
 router.get("/", verifyTokenAndAdmin, authController.user_list);
 

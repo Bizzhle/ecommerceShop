@@ -16,7 +16,8 @@ const usersRouter = require("./routes/user");
 const productsRouter = require("./routes/product");
 const ordersRouter = require("./routes/order");
 const cartsRouter = require("./routes/cart");
-const stripeRoute = require("/routes/stripe");
+
+const stripeRouter = require("./routes/stripe");
 
 const app = express();
 
