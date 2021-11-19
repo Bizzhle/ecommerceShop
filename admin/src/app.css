@@ -1,0 +1,15 @@
+
+.container {
+    display: flex;
+    border: 1px solid red;
+}
+
+/* .others {
+    flex: 4;
+    background-color: aqua;
+} */
+
+.link{
+    text-decoration: none;
+    color: inherit;
+}
