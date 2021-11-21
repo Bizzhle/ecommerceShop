@@ -1,0 +1,24 @@
+const express = require("express");
+const KEY = process.env.STRIPE_KEY;
+const stripe = require("stripe")(KEY);
+
+const router = express.Router();
+
+router.post("/payment", async (req, res) => {
+  stripe.charges.create(
+    {
+      source: req.body.tokenId,
+      amount: req.body.amount,
+      currency: "eur",
+    },
+    (stripeErr, stripeRes) => {
+      if (stripeErr) {
+        res.status(500).send("request failed woefully");
+      } else {
+        res.status(200).json(stripeRes);
+      }
+    }
+  );
+});
+
+module.exports = router;

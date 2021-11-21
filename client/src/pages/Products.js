@@ -7,7 +7,6 @@ import SelectBar from "../components/SelectBar";
 
 export default function Products() {
   const [products, setProducts] = useState("");
-  console.log(products);
 
   const title = "sort ";
 

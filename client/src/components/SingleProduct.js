@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from "react";
 // import { FaBars, FaShoppingCart, FaBackspace } from "react-icons/fa";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import SelectBar from "./SelectBar";
-import { useSelector } from "react-redux";
-import { addProduct } from "../context/cartRedux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators } from "../context/index";
+import { bindActionCreators } from "redux";
 import Footer from "./Footer";
 
 export default function SingleProduct() {
-  // const [data, setData] = useState([]);
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
   const quantity = useSelector((state) => state.cart.quantity);
-  const total = useSelector((state) => state.cart.total);
-  const price = useSelector((state) => state.cart.total);
-
-  const [products, setProducts] = useState({});
-  // const [quantity1, setQuantity1] = useState(quantity);
-  const { id } = useParams();
+  const [products, setProducts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
 
-  // console.log(quantity);
+  console.log(products);
+
+  const { addProduct } = bindActionCreators(actionCreators, dispatch);
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -34,7 +32,7 @@ export default function SingleProduct() {
   }, [id]);
 
   const handleClick = () => {
-    dispatch(addProduct({ products, quantity, price, total }));
+    addProduct(products);
   };
 
   const title = "choose your size";

@@ -1,4 +1,4 @@
-const User = require("../models/Users");
+const Cart = require("../models/Cart");
 
 // Create
 exports.cart_create = async (req, res) => {

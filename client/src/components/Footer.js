@@ -11,7 +11,7 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footer_left">
-        <h1 className="footer_left_logo">TexTil</h1>
+        <h1 className="footer_left_logo">TexTilWebshop</h1>
         <p className="footer_left_desc">
           There are many variations of passages of Lorem Ipsum available, but
           the majority have suffered alteration in some form, by injected
@@ -59,7 +59,7 @@ function Footer() {
           <p>622 Dixie Path , South Tobinchester 98336</p>
         </div>
         <div className="contactItem">
-          <MdPhone style={{ marginRight: "10px" }} /> <tel>+1 234 56 78</tel>
+          <MdPhone style={{ marginRight: "10px" }} /> <p>+1 234 56 78</p>
         </div>
         <div className="contactItem">
           <MdMailOutline style={{ marginRight: "10px" }} />{" "}

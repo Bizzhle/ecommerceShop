@@ -22,6 +22,8 @@ router.delete(
   productController.product_delete
 );
 
-router.get("find/:id", productController.product_detail);
+router.get("/find/:id", productController.product_detail);
 
 router.get("/", productController.product_list);
+
+module.exports = router;

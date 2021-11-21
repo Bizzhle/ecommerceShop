@@ -7,6 +7,7 @@ import SingleProduct from "./components/SingleProduct";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Success from "./pages/Success";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
+      <Route exact path="/success" component={Success} />
     </Router>
   );
 }

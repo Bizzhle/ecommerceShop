@@ -1,5 +1,5 @@
 const express = require("express");
-const orderController = require("../controllers/orderController");
+const cartController = require("../controllers/cartController");
 const {
   verifyToken,
   verifyTokenAndAuthorization,
@@ -8,7 +8,7 @@ const {
 
 const router = express.Router();
 
-router.post("/create", verifyToken, orderController.cart_create);
+router.post("/create", verifyToken, cartController.cart_create);
 
 router.put(
   "/:id/update",
@@ -29,4 +29,6 @@ router.get(
   cartController.cart_detail
 );
 
-router.get("/", verifyTokenAndAdmin, orderController.cart_list);
+router.get("/", verifyTokenAndAdmin, cartController.cart_list);
+
+module.exports = router;
