@@ -3,7 +3,7 @@ import "./chart.css"
 import { LineChart, Line, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 
-export default function Chart({ title, data, datakey, grid}) {
+export default function Chart({ title, data, dataKey, grid}) {
     return (
         <div className="chart">
             <h3 className="chartTitle">{title}</h3>
@@ -13,11 +13,9 @@ export default function Chart({ title, data, datakey, grid}) {
         
                     <XAxis dataKey="name" stroke="#8884d8" />
                     <Tooltip />
-                    {/* <CartesianGrid  stroke="#e0dfdf" strokeDasharray="5 5" /> */}
-                    {/* <YAxis />
-                    <Legend /> */}
-                    <Line type="monotone" dataKey="Active user" stroke="#8884d8" activeDot={{ r: 8 }} />
-                    {/* <Line type="monotone" dataKey="Active User" stroke="#82ca9d" /> */}
+                  
+                    <Line type="monotone" dataKey={dataKey} stroke="#8884d8" activeDot={{ r: 8 }} />
+                  
                 </LineChart>
 
             </ResponsiveContainer>

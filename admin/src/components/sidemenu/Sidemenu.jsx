@@ -48,10 +48,12 @@ export default function Sidemenu() {
                             Users 
                         </li>
                         </Link>
-                        <li className="sidebarListItem">
-                            <Storefront  className="siderbarIcon" />
-                            Products
-                        </li>
+                        <Link to="/products" className="link">
+                            <li className="sidebarListItem">
+                                <Storefront  className="siderbarIcon" />
+                                Products
+                            </li>
+                        </Link>
                         <li className="sidebarListItem">
                             <AttachMoney   className="siderbarIcon" />
                             Transactions

@@ -4,28 +4,51 @@ import Sidemenu from "./components/sidemenu/Sidemenu";
 import TopBar from "./components/topbar/TopBar";
 import Home from "./pages/home/Home";
 // import { Route, Switch } from "react-router";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Routes,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
+import NewUser from "./pages/newuser/NewUser";
+import ProductList from "./pages/products/ProductList";
+import SingleProduct from "./pages/product/SingleProduct";
+import NewProduct from "./pages/newProduct/NewProduct";
+import { Login } from "./pages/login/Login";
 
 function App() {
   return (
     <Router>
-      <TopBar />
-      <div className="container">
-        <Sidemenu />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/users" element={<UserList />} />
-          <Route path="/user/:id" element={<User />} />
-        </Routes>
-      </div>
+      <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
+
+        <>
+          <TopBar />
+          <div className="container">
+            <Sidemenu />
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/users">
+              <UserList />
+            </Route>
+            <Route path="/user/:userId">
+              <User />
+            </Route>
+            <Route path="/newUser">
+              <NewUser />
+            </Route>
+            <Route path="/products">
+              <ProductList />
+            </Route>
+            <Route path="/product/:productId">
+              <SingleProduct />
+            </Route>
+            <Route path="/newproduct">
+              <NewProduct />
+            </Route>
+          </div>
+        </>
+      </Switch>
     </Router>
   );
 }

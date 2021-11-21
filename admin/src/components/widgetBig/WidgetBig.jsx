@@ -10,6 +10,7 @@ export default function WidgetBig() {
         <div className="widgetBig">
             <h3 className="widgetBigTitle">Latest Transactions</h3>
             <table className="widgetBigtable">
+                <tbody>
                 <tr className="widgetBigTr">
                     <th className="widgetBigTh">Customer</th>
                     <th className="widgetBigTh">Date</th>
@@ -26,6 +27,8 @@ export default function WidgetBig() {
                         <Button type="approved" />
                     </td>
                 </tr>
+                </tbody>
+               
             </table>
         </div>
     )
