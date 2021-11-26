@@ -1,5 +1,5 @@
-import { updateProduct } from "../utils/product.utils";
-import { delProduct } from "../utils/product.utils";
+// import { updateProduct } from "../utils/product.utils";
+// import { delProduct } from "../utils/product.utils";
 
 const initialState = {
   products: [],
@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
         isFetching: (state.isFetching = true),
       };
 
-    case "getproductSuccess":
+    case "getProductSuccess":
       return {
         ...state,
         isFetching: (state.isFetching = false),
@@ -61,7 +61,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: (state.isFetching = false),
-        products: updateProduct(state.products, action.payload),
+        products: state.products,
       };
 
     case "updateProductFailure":
@@ -81,7 +81,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: (state.isFetching = false),
-        products: delProduct(state.products, action.payload),
+        products: state.products,
       };
 
     case "deleteProductFailure":

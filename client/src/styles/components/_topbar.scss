@@ -1,0 +1,156 @@
+
+$border: 1px solid red;
+.topbar {
+    width: 100%;
+    height: $nav-height;;
+    background: #fff;
+    border: $border;
+    position: fixed;
+    z-index: 99;
+    
+    
+    @include tablet {
+        height: $nav-tablet-height;
+    }
+
+    @include tab {
+        height: $nav-tablet-height;
+    }
+
+    @include mobile {
+        height: $nav-mobile-height;
+    }
+
+    &_container {
+        @include flex(center, space-between);
+        color: #000;
+        height: 100%; 
+        padding: 0px 10px;
+
+        &_left  {
+            display: flex;
+            align-items: center;
+
+            &_hamburger {
+                display: none;
+                margin-right: 10px;
+
+                @include tablet {
+                    display: block;
+                    // @include flex(center, space-between);
+                }
+
+                @include tab {
+                    display: block;
+                    @include flex(center, space-between);
+                }
+        
+                @include mobile {
+                    width: 30px;
+                    display: block;
+                    @include flex(center, space-between);
+                }
+            }
+
+            &_logo {
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }
+
+        &_center {
+            @include flex(center, space-around);
+            // border: $border;
+
+             @include mobile {
+                 display: none;
+             }
+
+             @include tablet {
+                display: none;
+            }
+
+            @include tab {
+                display: none;
+            }
+
+
+            &_links {
+                margin: 0px 10px;
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+
+        &_right  {
+            display: flex;
+            align-items: center;
+
+            &_iconContainer {
+                margin-left: 20px;
+                border-radius: 50%;
+                border-style: dotted;
+                border-color: red;
+                padding: 8px;
+
+                @include mobile {
+                    border: none;
+                    margin-left: 5px;
+                    padding: 5px;
+                }
+
+                @include tab {
+                    border: none;
+                    margin-left: 5px;
+                    padding: 5px;
+                }
+
+                @include tablet {
+                    border: none;
+                    margin-left: 5px;
+                    padding: 5px;
+                }
+                
+            }
+
+          
+        }
+    }
+
+    
+    .hidden { 
+        display: none; 
+}
+
+.sidemenu {
+    display: block;
+    position: fixed;
+    background-color: $main-bg;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    height: 100%;
+    overflow: auto;
+    transition: 1.5s ease-out;
+   
+  
+
+
+    @include tablet {
+        top: $nav-tablet-height;
+
+    }
+
+    @include tab {
+        top: $nav-tablet-height;
+
+    }
+
+    @include mobile {
+        top: $nav-mobile-height;
+
+    }
+
+}
+
+}

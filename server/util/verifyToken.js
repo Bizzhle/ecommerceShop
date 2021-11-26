@@ -1,26 +1,5 @@
 const jwt = require("jsonwebtoken");
 
-// const { SECRET_KEY } = require("../config");
-
-// module.exports = (context) => {
-//   const authheader = context.req.headers.authorization;
-
-//   if (authheader) {
-//     const token = authheader.split("Bearer ")[1];
-
-//     if (token) {
-//       try {
-//         const user = jwt.verify(token, SECRET_KEY);
-//         return user;
-//       } catch (err) {
-//         throw new AuthenticationError("Invalid/Expired token");
-//       }
-//     }
-//     throw new Error("Authentication token must be 'Bearer [token]");
-//   }
-//   throw new Error("Authhorization header must be provided");
-// };
-
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.token;
   if (authHeader) {
