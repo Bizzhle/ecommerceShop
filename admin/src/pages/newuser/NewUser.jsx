@@ -1,18 +1,30 @@
-import React from 'react'
+import React, {useState} from 'react'
 import "./newuser.css"
 
 export default function NewUser() {
+    const [file, setFile] = useState(null);
+    const [inputs, setInputs] = useState({});
+
+    const handleChange = (e) => {
+        setInputs((prev) => {
+            return {...prev, [e.target.name]: e.target.value}
+        })
+    }
     return (
         <div className="newUser">
             <h1 className="newUserTitle">NewUser</h1>
             <form action="" className="newUserForm">
                 <div className="newUserItem">
+                    <label htmlFor="">Image</label>
+                    <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} />
+                </div>
+                <div className="newUserItem">
                     <label htmlFor="">Username</label>
-                    <input type="text" placeholder="name" />
+                    <input type="text" placeholder="name" onChange={handleChange} />
                 </div>
                 <div className="newUserItem">
                     <label htmlFor="">Full Name</label>
-                    <input type="text" placeholder="name surname" />
+                    <input type="text" placeholder="name surname" onChange={handleChange} />
                 </div>
                 <div className="newUserItem">
                     <label htmlFor="">Email</label>

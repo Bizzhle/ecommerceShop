@@ -8,11 +8,13 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Success from "./pages/Success";
+import TopBar from "./components/TopBar";
 
 function App() {
   return (
     <Router>
-      <NavBar />
+      {/* <NavBar /> */}
+      <TopBar />
       <Route exact path="/" component={Home} />
       <Route exact path="/product" component={Products} />
       <Route exact path="/posts/:id" component={SingleProduct} />

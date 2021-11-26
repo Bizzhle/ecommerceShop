@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import styles from "../styles/Nav.module.scss";
 import { Link } from "react-router-dom";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdCancel } from "react-icons/md";
 import { Mainmenu } from "../mainmenu";
@@ -13,7 +13,7 @@ export default function Header() {
   const quantity = useSelector((state) => state.cart.quantity);
 
   const showSidebar = () => setSidebar(!sidebar);
-  // console.log(showSidebar);
+  console.log(showSidebar);
 
   return (
     <div className="header">
@@ -39,6 +39,7 @@ export default function Header() {
               <Link to={item.path}>{item.title}</Link>
             </div>
           ))}
+          <AiOutlineUser />
           <Link to="/cart">
             <div className="header_nav_cart">
               <AiOutlineShoppingCart style={{ height: 40, width: 40 }} />

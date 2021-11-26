@@ -3,7 +3,7 @@ import "./app.css";
 import Sidemenu from "./components/sidemenu/Sidemenu";
 import TopBar from "./components/topbar/TopBar";
 import Home from "./pages/home/Home";
-// import { Route, Switch } from "react-router";
+import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
@@ -14,13 +14,19 @@ import NewProduct from "./pages/newProduct/NewProduct";
 import { Login } from "./pages/login/Login";
 
 function App() {
+  // const admin = useSelector((state) => state.login.currentUser.user.isAdmin);
+  // const user = useSelector((state) => state.login.currentUser.user);
+
+  // console.log(admin);
+  // console.log(user);
+
   return (
     <Router>
       <Switch>
         <Route path="/login">
           <Login />
         </Route>
-
+        {/* {admin && ( */}
         <>
           <TopBar />
           <div className="container">
@@ -48,6 +54,7 @@ function App() {
             </Route>
           </div>
         </>
+        {/* )} */}
       </Switch>
     </Router>
   );

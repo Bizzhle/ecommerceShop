@@ -28,7 +28,7 @@ export const LOGOUT = () => {
 
 export const getProducts = async (dispatch) => {
   dispatch({
-    type: getProducts,
+    type: "getProducts",
   });
 
   try {
@@ -50,7 +50,7 @@ export const addProduct = async (product, dispatch) => {
   });
 
   try {
-    const res = await userRequest.post(`/products`, product);
+    const res = await userRequest.post(`products/create/`, product);
     dispatch({
       type: "addProductSuccess",
       payload: res.data,
@@ -64,15 +64,14 @@ export const addProduct = async (product, dispatch) => {
 
 export const updateProduct = async (id, products, dispatch) => {
   dispatch({
-    type: updateProduct,
+    type: "updateProduct",
   });
 
   try {
-    //   const res = await userRequest.post(`/products`, product);
+    const res = await userRequest.put(`/products/${id}/update`, products);
     dispatch({
       type: "updateProductSuccess",
-      payload: products,
-      id,
+      payload: res.data,
     });
   } catch (err) {
     dispatch({
@@ -83,11 +82,11 @@ export const updateProduct = async (id, products, dispatch) => {
 
 export const deleteProduct = async (id, dispatch) => {
   dispatch({
-    type: deleteProduct,
+    type: "deleteProduct",
   });
 
   try {
-    //   const res = await userRequest.post(`/products`, product);
+    const res = await userRequest.delete(`/products/${id}/delete`);
     dispatch({
       type: "deleteProductSuccess",
       payload: id,
