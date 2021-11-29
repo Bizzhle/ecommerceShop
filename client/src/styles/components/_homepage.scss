@@ -1,0 +1,161 @@
+.homepage {
+    max-width: 90%;
+    margin: 5px auto;
+    
+
+
+    &_imageSlider {
+        width: 100%;
+
+    }
+
+    &_banner {
+        margin: 20px 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px 200px; 
+        grid-gap: 20px;
+
+       
+
+        &_images {
+            grid-row: 1 /  span 2; 
+            background-image: url("../../assets/bgimages/femmodel.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 20px;
+            background-position: center;
+
+            
+        }
+
+        &_images1 {
+            border: $border;
+        }
+
+        &_images3 {
+            border: $border;
+        }
+
+        &_images2 {
+            grid-row: 2 /  span 2;
+            
+            background-image: url("../../assets/bgimages/manmodel.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+        }
+
+         @include mobile {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(6, 200px);
+            &_images {
+                // grid-row: 2fr;
+            grid-row: 1 /  span 2; 
+
+            }
+
+            &_images1 {
+                border: $border;
+                grid-row: auto;
+
+            }
+    
+            &_images3 {
+                border: $border;
+                grid-row: auto;
+                
+            }
+
+            &_images2 {
+                grid-row: auto;
+            grid-row: 4 /  span 2; 
+
+            }
+
+        }
+    }
+
+    &_category {
+        h3 {
+           font-size: 20px;
+        }
+
+        &_cardContainer {
+            margin: 10px  0px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 60px;
+
+            @include mobile {
+                grid-template-columns:  1fr;
+
+            }
+
+            @include tab {
+            grid-template-columns: repeat(2, 1fr);
+           
+
+            }
+
+            @include tablet {
+            grid-template-columns: repeat(2, 1fr);
+    
+
+            }
+
+           
+
+            &_card {
+                position: relative;
+                
+                text-align: center;
+
+                    img {
+                        width: 100%;
+                        height: 250px;
+                        object-fit: cover;
+                        
+                    } 
+
+                &_button {
+                    position: absolute;
+                    bottom: 10px;
+                    width: 100%;
+                    text-align: center;
+
+                    p {
+                        font-size: 18px;
+                        font-weight: 500;
+                        cursor: pointer;
+                       
+                    }
+                    p:hover {
+                        transition: 1s;
+                        text-decoration: underline;
+                    }
+                
+                }
+            }
+        }
+    }
+
+    &_services {
+        margin: 20px 0px;
+
+        &_servicesContainer  {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 200px;
+            background-color: rgb(98, 71, 126);
+
+            &_items {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}

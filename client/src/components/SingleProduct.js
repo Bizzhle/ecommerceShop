@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { FaBars, FaShoppingCart, FaBackspace } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import SearchBar from "../components/SearchBar";
+
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import SelectBar from "./SelectBar";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,7 +12,6 @@ import Footer from "./Footer";
 export default function SingleProduct() {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
-  const quantity = useSelector((state) => state.cart.quantity);
   const [products, setProducts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
@@ -38,12 +37,8 @@ export default function SingleProduct() {
   const title = "choose your size";
 
   return (
-    <div className="single-product">
-      <div className="wrapper">
-        <div className="single-product_searchbar">
-          <SearchBar />
-        </div>
-
+    <div className="">
+      <div className="single-product wrapper">
         <div className="single-product_container">
           <div className="single-product_container_image-container">
             <div className="image">
@@ -71,38 +66,38 @@ export default function SingleProduct() {
               go to bag
             </button> */}
 
-              {/* <div className="single-product_container_info_card-info border-gray-400 border mt-12">
-              <ul className="">
-                <li className="border-b border-gray-400   p-4 text-center">
-                  shipped by webshopper
-                </li>
-                <li className="border-b border-gray-400 p-4">
-                  <p>fast delivery</p>
-                  <p>1-3 working day</p>
-                  <ul className="flex justify-between">
-                    <li>Fast delivery</li>
-                    <li>10 EUR</li>
-                  </ul>
-                </li>
+              <div className="single-product_container_info_card-info border-gray-400 border mt-12">
+                <ul className="">
+                  <li className="border-b border-gray-400   p-4 text-center">
+                    shipped by webshopper
+                  </li>
+                  <li className="border-b border-gray-400 p-4">
+                    <p>fast delivery</p>
+                    <p>1-3 working day</p>
+                    <ul className="flex justify-between">
+                      <li>Fast delivery</li>
+                      <li>10 EUR</li>
+                    </ul>
+                  </li>
 
-                <li className="border-b border-gray-400 p-4">
-                  <p>deliver</p>
-                  3-5 working days
-                  <ul className="flex justify-between">
-                    <li>Standard delivery</li>
-                    <li>Free</li>
-                  </ul>
-                </li>
+                  <li className="border-b border-gray-400 p-4">
+                    <p>deliver</p>
+                    3-5 working days
+                    <ul className="flex justify-between">
+                      <li>Standard delivery</li>
+                      <li>Free</li>
+                    </ul>
+                  </li>
 
-                <li className="border-b border-gray-400 p-4">
-                  Free Delivery and free returns
-                </li>
+                  <li className="border-b border-gray-400 p-4">
+                    Free Delivery and free returns
+                  </li>
 
-                <li className=" p-4">
-                  <p>30 days return policy</p>
-                </li>
-              </ul>
-            </div> */}
+                  <li className=" p-4">
+                    <p>30 days return policy</p>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <div
@@ -147,12 +142,9 @@ export default function SingleProduct() {
           </div>
         </div>
       </div>
-
       <div className="footer">
         <Footer />
       </div>
-
-      <div className="bottom"></div>
     </div>
   );
 }

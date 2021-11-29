@@ -1,51 +1,52 @@
 .cart {
-    min-height: 100vh;
+    min-height: 80vh;
     padding-top: $nav-height;
     background-color: rgb(214, 211, 211);
-    width: 100vw;
+    max-width: 80%;
+    margin: 0 auto;
    
 
     @include mobile {
         padding-top: $nav-mobile-height;
-        // display: flex;
-        // flex-direction: column; 
+        max-width: 100%;
+       
+
     }
 
     @include tab {
         padding-top: $nav-tablet-height;  
-        // display: flex;
-        // flex-direction: column; 
+        max-width: 100%;
+
     }
 
     @include tablet {
         padding-top: $nav-tablet-height;
-       
+        max-width: 100%;
+
     }
 
     &_wrapper {
-        // @include flex(flex-start, space-between);
+
         display: grid;
         grid-template-columns: 2fr 1fr;
        
 
         @include mobile {
             grid-template-columns: 1fr;
-
         }
 
         @include tab {
             grid-template-columns: 1fr;
-
         }
 
 
-
         &_sections {
-            
 
             &__information {
            
+           
 
+                
                 h1 {
                     margin: 20px 0;
                 }
@@ -81,6 +82,8 @@
                         grid-template-columns: 2fr 1fr;
                         // @include flex(center, space-between);
                         padding: 10px;
+           
+
         
                         @include mobile {
                             display: grid;
@@ -88,6 +91,7 @@
                         }
 
                         &_details {
+         
 
                             p {
                                 font-size: 1.5rem;
@@ -142,15 +146,22 @@
     &__bg-color {
         background-color: #fff;
         margin: 20px;
-      
-         padding: 30px;
+        padding: 30px;
         
         @include mobile {
-            margin: 0;
-            margin-top: 10px;
-            padding: 20px;
- 
+            margin: 10px;
+            padding: 10px;
         }
+        
+        // @include tab {   
+        //     margin: 20px;
+        //     padding: 20px;
+        // }
+
+        // @include tablet {
+        //     margin: 20px;
+        //     padding: 20px;
+        // }
 
     }
 

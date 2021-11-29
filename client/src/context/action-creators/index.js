@@ -1,21 +1,27 @@
 import { publicRequest } from "../../requestMethods";
 
-export const addProduct = (products, quantity) => {
+export const addProduct = (products) => {
   return (dispatch) => {
     dispatch({
       type: "add",
       payload: products,
-      quantity,
+    });
+  };
+};
+export const addQuantity = (id) => {
+  return (dispatch) => {
+    dispatch({
+      type: "add_quantity",
+      id,
     });
   };
 };
 
-export const removeProduct = (products, quantity) => {
+export const removeProduct = (id) => {
   return (dispatch) => {
     dispatch({
       type: "remove_product",
-      payload: products,
-      quantity,
+      id,
     });
   };
 };
@@ -24,6 +30,7 @@ export const deleteProduct = (id) => {
   return (dispatch) => {
     dispatch({
       type: "delete_product",
+      id,
     });
   };
 };

@@ -11,20 +11,42 @@ const reducer = (state = initialState, action) => {
     case "add":
       return {
         ...state,
-        quantity: (state.quantity += 1),
+
         // products: [...state.products, action.payload],
         products: addItemToCart(state.products, action.payload),
       };
+
+    case "add_quantity":
+      return {
+        ...state,
+        products: state.products.map((product) =>
+          product.id === action.id
+            ? {
+                ...product,
+                quantity: product.quantity + 1,
+              }
+            : product
+        ),
+      };
+
     case "remove_product":
       return {
         ...state,
-        quantity: (state.quantity -= 1),
-        products: removeItemFromCart(state.products, action.payload),
+        // products: state.products.map((product) =>
+        //   product.id === action.id
+        //     ? {
+        //         ...product,
+        //         quantity: product.quantity - 1,
+        //       }
+        //     : product
+        // ),
+        products: removeItemFromCart(state.products, action.id),
       };
 
     case "delete_product":
       return {
         ...state,
+
         products: state.products.filter((product) => product.id !== action.id),
       };
     case "clear":

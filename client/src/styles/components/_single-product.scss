@@ -1,61 +1,36 @@
 
 .single-product {
-    min-height: 100vh;
+    min-height: 80vh;
     padding-top: $nav-height;
     display: flex;
     flex-direction: column;
-
-    .wrapper {
-        flex-grow: 1;
-    }
-
-    // @media screen and (min-width: 767px) {
-    //     display: grid;
-    //     grid-template-columns: repeat(2, minmax(0, 1fr));
-        
-    // }
-
-    &_searchbar {
-        // border-bottom: 1px  solid black;
-        // border-top: 1px  solid black;
-        // padding: 10px;
-       
-        padding: 0 20px;
-        width: 300px;
-
-        @include flex(center, space-between);
-       
-        @include mobile { 
-            border-top: 0;
-            border-bottom: 0 ;
-            padding: 0;
-        width: 100%;
-
-        }
-
-        @include tab { 
-            border-top: 0;
-            border-bottom: 0 ;
-            padding: 0;
-        width: 100%;
-
-        }
-        
-        @include tablet { 
-            border-top: 0;
-            border-bottom: 0 ;
-            padding: 0;
-            width: 100%;
-
-        }
+    max-width: 60%;
+    margin: 0 auto;
+   
+    
+   
+    @include mobile {
+        max-width: 100%;
+        padding-top: $nav-mobile-height;
 
     }
+
+    @include tab {
+        max-width: 90%;
+    }
+
+    @include tablet {
+        max-width: 90%;
+    }
+
+
 
     &_container {
-        padding: 20px;
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-gap: 20px;
+        grid-gap: 50px;
+    
+
 
         @include mobile {
             padding: 0px;
@@ -87,11 +62,9 @@
 
         &_info {
            
-            // padding: 20px;
 
             &_container {
-                // padding: 20px;
-
+               
                 @include mobile {
                     padding: 20px;
                 }
@@ -131,9 +104,6 @@
             &_card-info {
                 border: 1px solid gray;
                 margin-top: 20px;
-                // border: $border;
-
-                
 
                 li {
                     border-bottom: 1px solid gray;
@@ -146,12 +116,9 @@
                 border-bottom: 2px solid black;
                 border-right: 1px solid gray;
                 border-left: 1px solid gray;
-
-
                 margin-top: 50px;
                 padding-left: 10px;
 
-                
             }
         }
     }
