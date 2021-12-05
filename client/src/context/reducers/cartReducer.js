@@ -1,7 +1,7 @@
 import { addItemToCart, removeItemFromCart } from "../utils/cart.utils";
 
 const initialState = {
-  products: [],
+  cartItems: [],
   quantity: 0,
   total: 0,
 };
@@ -12,47 +12,49 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
 
-        // products: [...state.products, action.payload],
-        products: addItemToCart(state.products, action.payload),
+        // cartItems: [...state.products, action.payload],
+        cartItems: addItemToCart(state.cartItems, action.id),
       };
 
     case "add_quantity":
       return {
         ...state,
-        products: state.products.map((product) =>
-          product.id === action.id
+        cartItems: state.cartItems.map((cartItem) =>
+          cartItem.id === action.id
             ? {
-                ...product,
-                quantity: product.quantity + 1,
+                ...cartItem,
+                quantity: cartItem.quantity + 1,
               }
-            : product
+            : cartItem
         ),
       };
 
-    case "remove_product":
+    case "remove_cartItem":
       return {
         ...state,
-        // products: state.products.map((product) =>
-        //   product.id === action.id
-        //     ? {
-        //         ...product,
-        //         quantity: product.quantity - 1,
-        //       }
-        //     : product
-        // ),
-        products: removeItemFromCart(state.products, action.id),
+        cartItems: state.cartItems.map((cartItem) =>
+          cartItem.id === action.id
+            ? {
+                ...cartItem,
+                quantity: cartItem.quantity - 1,
+              }
+            : cartItem
+        ),
+        // cartItems: removeItemFromCart(state.cartItems, action.id),
       };
 
-    case "delete_product":
+    case "delete_cartItem":
       return {
         ...state,
 
-        products: state.products.filter((product) => product.id !== action.id),
+        cartItems: state.cartItems.filter(
+          (cartItem) => cartItem.id !== action.id
+        ),
       };
     case "clear":
       return {
         ...state,
-        products: [],
+        cartItems: [],
         quantity: 0,
         total: 0,
       };

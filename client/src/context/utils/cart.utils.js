@@ -1,12 +1,12 @@
 export const addItemToCart = (products, productToAdd) => {
   const existingProduct = products.find(
-    (product) => product.id === productToAdd.id
+    (product) => product._id === productToAdd._id
   );
   console.log(existingProduct);
 
   if (existingProduct) {
     return products.map((product) =>
-      product.id === productToAdd.id
+      product._id === productToAdd._id
         ? { ...product, quantity: product.quantity + 1 }
         : product
     );
@@ -17,7 +17,7 @@ export const addItemToCart = (products, productToAdd) => {
 
 export const removeItemFromCart = (products, productToRemove) => {
   const existingProduct = products.find(
-    (product) => product.id === productToRemove.id
+    (product) => product._id === productToRemove._id
   );
   console.log(existingProduct);
 

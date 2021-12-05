@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-// import { FaBars, FaShoppingCart, FaBackspace } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import SelectBar from "./SelectBar";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators } from "../context/index";
 import { bindActionCreators } from "redux";
 import Footer from "./Footer";
+import { publicRequest } from "../requestMethods";
 
 export default function SingleProduct() {
   const location = useLocation();
@@ -18,20 +17,25 @@ export default function SingleProduct() {
 
   console.log(products);
 
-  const { addProduct } = bindActionCreators(actionCreators, dispatch);
+  const { addProduct, getProductId } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
   useEffect(() => {
     const fetchProductData = async () => {
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-      const data = await response.json();
+      // const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+      const res = await publicRequest.get(`/products/find/${id}`);
+      const data = await res.data;
       setProducts(data);
     };
 
     fetchProductData();
+    // dispatch(getProductId(id));
   }, [id]);
 
-  const handleClick = () => {
-    addProduct(products);
+  const handleClick = (id) => {
+    addProduct(id);
   };
 
   const title = "choose your size";
@@ -42,7 +46,7 @@ export default function SingleProduct() {
         <div className="single-product_container">
           <div className="single-product_container_image-container">
             <div className="image">
-              <img src={products.image} alt="" />
+              <img src={products.img} alt="" />
             </div>
           </div>
 
@@ -57,7 +61,7 @@ export default function SingleProduct() {
               <SelectBar title={title} />
               <button
                 className="single-product_container_info_button"
-                onClick={handleClick}
+                onClick={() => handleClick(products)}
               >
                 Add to bag
               </button>
@@ -109,7 +113,7 @@ export default function SingleProduct() {
                 <span>{!isOpen ? <AiOutlineDown /> : <AiOutlineUp />}</span>
               </div>
               {isOpen && (
-                <div class="accordion-panel">
+                <div className="accordion-panel">
                   <p>{products.description}</p>
                 </div>
               )}

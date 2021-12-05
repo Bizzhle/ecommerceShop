@@ -24,7 +24,7 @@
         
 
 
-        // @include flex(center, space-between);
+       
        
         @include mobile { 
             border-top: 0;
@@ -145,7 +145,11 @@
             }
 
             @include tab {
-                flex: 1;
+                flex: 2;
+            }
+
+            @include tablet {
+                flex: 2;
             }
         }
 

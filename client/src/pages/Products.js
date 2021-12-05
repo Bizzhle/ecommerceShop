@@ -4,39 +4,28 @@ import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
 import ProductCard from "../components/ProductCard";
 import Sidemenu from "../components/Sidemenu";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts } from "../context/action-creators";
 
 export default function Products() {
-  const [products, setProducts] = useState([]);
   const [sidemenu, setSidemenu] = useState(false);
+  const products = useSelector((state) => state.product.products);
+  const category = useSelector((state) => state.product.categories);
+  const dispatch = useDispatch();
   const showSidemenu = () => setSidemenu(!sidemenu);
-  console.log(sidemenu);
-
-  const title = "sort ";
-
-  async function handleFilter(category) {
-    const res = await fetch(
-      `https://fakestoreapi.com/products/category/${category}`
-    );
-    const data = await res.json();
-    setProducts(data);
-    console.log("clickeed");
-  }
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products/")
-      .then((res) => res.json())
-      .then((json) => setProducts(json));
-  }, []);
+    getProducts(dispatch);
+  }, [dispatch]);
+
+  const refreshPage = () => {
+    window.location.reload(true);
+    console.log("click");
+  };
 
   return (
     <div className="products">
       <section className="products_bar">
-        {/* <div className="products_bar_searchbar">
-          <SearchBar />
-        </div>
-        <div className="products_bar_selectbar">
-          <SelectBar title={title} />
-        </div> */}
         <div className="products_bar_filterbtn">
           <button
             onClick={showSidemenu}
@@ -56,20 +45,26 @@ export default function Products() {
           <div className="products_bar_sidemenu_filter">
             <Sidemenu
               showSidemenu={showSidemenu}
-              handleFilter={handleFilter}
               products={products}
+              category={category}
+              refreshPage={refreshPage}
             />
           </div>
         </div>
       </section>
       <div className="products_container" onClick={showSidemenu}>
         <div className="products_container_sidemenu">
-          <Sidemenu handleFilter={handleFilter} products={products} />
+          <Sidemenu
+            // handleFilter={handleFilter}
+            products={products}
+            category={category}
+            showSidemenu={showSidemenu}
+          />
         </div>
         <section className="products_card">
           {products &&
             products.map((value) => (
-              <ProductCard key={value.id} value={value} />
+              <ProductCard key={value._id} value={value} />
             ))}
         </section>
       </div>

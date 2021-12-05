@@ -12,32 +12,36 @@ import { bindActionCreators } from "redux";
 import { actionCreators } from "../context/index";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
+// import { deleteCartItem, removeCartItem } from "../context/action-creators";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
 export default function Cart() {
   // const quantity = useSelector((state) => state.cart.quantity);
-  const products = useSelector((state) => state.cart.products);
+  const cartItems = useSelector((state) => state.cart.cartItems);
   // const total = useSelector((state) => state.cart.total);
   const [data, setData] = useState({});
   const [stripeToken, setStripeToken] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const quantity = products.reduce((acc, product) => acc + product.quantity, 0);
-  const amount = products.reduce(
+  const quantity = cartItems.reduce(
+    (acc, product) => acc + product.quantity,
+    0
+  );
+  const amount = cartItems.reduce(
     (acc, product) => acc + product.price * product.quantity,
     0
   );
 
   const total = amount.toFixed(2);
 
-  const { addQuantity, removeProduct, deleteProduct } = bindActionCreators(
+  const { addQuantity, deleteCartItem, removeCartItem } = bindActionCreators(
     actionCreators,
     dispatch
   );
 
-  console.log(products);
+  console.log(cartItems);
   console.log(quantity);
   console.log(total);
 
@@ -65,27 +69,29 @@ export default function Cart() {
   };
 
   const handleDelete = (id) => {
-    deleteProduct(id);
+    deleteCartItem(id);
     console.log("clicked");
   };
 
   const handleAdd = (id) => {
     addQuantity(id);
+    console.log(id);
   };
 
   const handleSub = (id) => {
-    removeProduct(id);
+    removeCartItem(id);
+    console.log(id);
   };
 
   return (
     <div className="cartContainer">
       <div className="cart">
-        {products.length > 0 ? (
+        {cartItems.length > 0 ? (
           <div className=" cart_wrapper">
             <div className="cart_wrapper_sections">
               {quantity >= 1 ? (
                 <div>
-                  {products.map((value) => (
+                  {cartItems.map((value) => (
                     <section
                       key={Math.random()}
                       className="cart_wrapper_sections__information cart__bg-color"
@@ -99,13 +105,13 @@ export default function Cart() {
 
                       <div className="cart_wrapper_sections__information_info  ">
                         <div className="image">
-                          <img src={value.image} alt="" />
+                          <img src={value.img} alt="" />
                         </div>
                         <div className="cart_wrapper_sections__information_info_productDetail">
                           <div className="cart_wrapper_sections__information_info_productDetail_details">
                             <p className="productName">{value.title}</p>
                             <p className="productID">{value.category}</p>
-                            <p className="productSize">Size: 37.5</p>
+                            <p className="productSize">{value.id}</p>
 
                             <div className="cart_wrapper_sections__information_info_productDetail_details_amountContainer">
                               <div
@@ -180,7 +186,7 @@ export default function Cart() {
               <div className="item">
                 <span>
                   <p className="subtotal">subtotal</p>
-                  <p className="price">{products ? total : ""} €</p>
+                  <p className="price">{cartItems ? total : ""} €</p>
                 </span>
                 <hr />
                 <span>
@@ -194,8 +200,8 @@ export default function Cart() {
                 name="textilshop"
                 billingAddress
                 shippingAddress
-                description={`Your total is ${products[0].price * quantity}`}
-                amount={products[0].price * quantity * 100}
+                description={`Your total is ${cartItems[0].price * quantity}`}
+                amount={cartItems[0].price * quantity * 100}
                 token={onToken}
                 stripeKey={KEY}
               >

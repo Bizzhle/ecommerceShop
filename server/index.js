@@ -21,11 +21,11 @@ const stripeRouter = require("./routes/stripe");
 
 const app = express();
 
-const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/webshopper?authSource=admin`;
+// const mongoURL = ``;
 
 const connectWithRetry = () => {
   mongoose
-    .connect(mongoURL, {
+    .connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })

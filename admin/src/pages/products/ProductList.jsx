@@ -33,10 +33,12 @@ export default function ProductList() {
             width: 200,
             renderCell: (params) => {
                 return (
-                <div className="productListItem">
-                    <img src={params.row.img} className="productListImg" alt="" />
-                    {params.row.title}
-                </div>
+                  <Link to={"/product/" + params.row._id}>
+                    <div className="productListItem">
+                        <img src={params.row.img} className="productListImg" alt="" />
+                        {params.row.title}
+                    </div>
+                </Link>
                 )
             }
         },
@@ -64,12 +66,19 @@ export default function ProductList() {
               );
             },
           },
+         
     
     ]
 
  
     return (
         <div className="productList">
+            <div className="singleProductWrapper">
+               
+                <Link to="/newProduct">
+                    <button className="singleProductCreateButton">Create</button>
+                </Link>
+            </div>
             <DataGrid
               rows={products}
               columns={columns}

@@ -1,10 +1,10 @@
 import { publicRequest } from "../../requestMethods";
 
-export const addProduct = (products) => {
+export const addProduct = (id) => {
   return (dispatch) => {
     dispatch({
       type: "add",
-      payload: products,
+      id,
     });
   };
 };
@@ -17,19 +17,20 @@ export const addQuantity = (id) => {
   };
 };
 
-export const removeProduct = (id) => {
+export const removeCartItem = (id) => {
   return (dispatch) => {
     dispatch({
-      type: "remove_product",
+      type: "remove_cartItem",
       id,
     });
+    console.log(id);
   };
 };
 
-export const deleteProduct = (id) => {
+export const deleteCartItem = (id) => {
   return (dispatch) => {
     dispatch({
-      type: "delete_product",
+      type: "delete_cartItem",
       id,
     });
   };
@@ -67,4 +68,58 @@ export const LOGOUT = () => {
       type: "logout",
     });
   };
+};
+
+export const getProducts = async (dispatch) => {
+  dispatch({
+    type: "getProducts",
+  });
+
+  try {
+    const res = await publicRequest.get("/products");
+    dispatch({
+      type: "getProductSuccess",
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: "getProductFailure",
+    });
+  }
+};
+
+export const getProductId = async (dispatch, id) => {
+  dispatch({
+    type: "getProductId",
+  });
+
+  try {
+    const res = await publicRequest.get(`/products/find/${id}`);
+    dispatch({
+      type: "getProductIdSuccess",
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: "getProductIdFailure",
+    });
+  }
+};
+
+export const getProductCategory = async (dispatch, category) => {
+  dispatch({
+    type: "getProductCategory",
+  });
+
+  try {
+    const res = await publicRequest.get(`/products?category=${category}`);
+    dispatch({
+      type: "getProductCategorySuccess",
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: "getProductCategoryFailure",
+    });
+  }
 };

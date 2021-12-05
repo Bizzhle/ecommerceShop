@@ -25,6 +25,10 @@ export default function NewProduct() {
 
     }
 
+    const cancelForm = () => {
+        document.getElementById("product-form").reset();
+    }
+
     const handleClick = (e) => {
         e.preventDefault();
         const fileName = new Date().getTime() + file.name;
@@ -65,15 +69,16 @@ export default function NewProduct() {
                 });
             }
         );
+        cancelForm();
     }
 
     return (
         <div className="newProduct">
             <h1 className="createProductTitle">New Product</h1>
-            <form action="" className="createProductForm">
+            <form action="" className="createProductForm" id="product-form">
                 <div className="createProductItem">
                     <label htmlFor="">Image</label>
-                    <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} />
+                    <input type="file"  id="file" onChange={(e) => setFile(e.target.files[0])} />
                 </div>
                 <div className="createProductItem">
                     <label htmlFor="">Title</label>

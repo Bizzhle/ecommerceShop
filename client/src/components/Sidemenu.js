@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProductCategory } from "../context/action-creators";
 
 // import { Link } from "react-router-dom";
 import {
@@ -6,15 +8,21 @@ import {
   KeyboardArrowUp,
   Remove,
 } from "@mui/icons-material";
+import { publicRequest } from "../requestMethods";
 
-export default function Sidemenu({ handleFilter, showSidemenu }) {
-  const [products, setProducts] = useState([]);
+export default function Sidemenu({
+  showSidemenu,
+  products,
+  category,
+  refreshPage,
+}) {
   const [isOpen, setIsOpen] = useState(null);
-  // const [isDeepOpen, setIsDeepOpen] = useState(null);
-
+  const dispatch = useDispatch();
   const ShowAccordion = (id) => setIsOpen((prev) => (prev === id ? null : id));
-  // const ShowDeepAccordion = (id) =>
-  //   setIsDeepOpen((prev) => (prev === id ? null : id));
+
+  async function handleFilter(category) {
+    getProductCategory(dispatch, category);
+  }
 
   function handleSort(value) {
     handleFilter(value);
@@ -22,22 +30,18 @@ export default function Sidemenu({ handleFilter, showSidemenu }) {
     console.log("clicked");
   }
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products/")
-      .then((res) => res.json())
-      .then((json) => setProducts(json));
-  }, []);
+  console.log(products);
 
   return (
     <div className="sidemenu">
-      <div className="sidemenu_wrapper">
+      <div className="sidemenu_wrapper" onClick={refreshPage}>
         <h3>categories</h3>
-        {products.map((item) => (
+        {category.map((item) => (
           <div key={Math.random()} className="sidemenu_wrapper_accordion">
             <div className="sidemenu_wrapper_accordion_item">
-              <span>{item.title.slice(0, 10)}</span>
+              <span>{item.title}</span>
 
-              {item.category.length > 0 > 0 ? (
+              {item.categories.length > 0 ? (
                 <span>
                   {isOpen === item.id ? (
                     <KeyboardArrowUp
@@ -47,7 +51,7 @@ export default function Sidemenu({ handleFilter, showSidemenu }) {
                   ) : (
                     <KeyboardArrowDown
                       style={{ height: 20, width: 30 }}
-                      onClick={() => ShowAccordion(item.id)}
+                      onClick={() => ShowAccordion(item._id)}
                     />
                   )}
                 </span>
@@ -55,14 +59,15 @@ export default function Sidemenu({ handleFilter, showSidemenu }) {
                 ""
               )}
             </div>
-            {isOpen === item.id ? (
-              <div
-                className="sidemenu_wrapper_accordion_category"
-                onClick={() => handleSort(item.category)}
-              >
-                {" "}
-                <Remove /> <p>{item.category} </p>
-              </div>
+            {isOpen === item._id ? (
+              <ul className="sidemenu_wrapper_accordion_category">
+                {/*  <p>{item.categories} </p> */}
+                {item.categories.map((i) => (
+                  <li key={Math.random()} onClick={() => handleSort(i)}>
+                    - {i}
+                  </li>
+                ))}
+              </ul>
             ) : (
               ""
             )}

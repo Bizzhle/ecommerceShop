@@ -4,16 +4,22 @@ import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // import { connect } from "react-redux";
-// import { currentUser } from "../context/reducers/loginReducer";
 
 function AuthRoute({ component: Component, ...rest }) {
-  const currentUser = useSelector((state) => state.login.currentUser);
+  const { currentUser } = useSelector((state) => state.login);
+
+  console.log(currentUser);
+  // console.log(currentUsers);
 
   return (
     <Route
       {...rest}
       render={(props) =>
-        currentUser.isAdmin ? <Component {...props} /> : <Redirect to="/" />
+        currentUser.user.isAdmin ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
       }
     />
   );

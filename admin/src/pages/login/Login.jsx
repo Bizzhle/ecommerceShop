@@ -1,17 +1,36 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./login.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../context/action-creators";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { useLocation } from "react-router";
 
-export const Login = () => {
+
+
+export const Login = (props) => {
+    const { currentUser} = useSelector((state) => state.login)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
+    const history = useHistory();
+    const location = useLocation();
+    console.log(location);
+
 
     const handleClick = (e) => {
         e.preventDefault()
         login(dispatch, {username, password})
+       
     }
+
+    useEffect(() => {
+        if (currentUser) {
+            history.push("/")
+            window.location.reload()
+        }
+        
+    }, [history, currentUser, location.pathname]);
 
     return (
         <div className="login">

@@ -9,9 +9,12 @@ import { useSelector } from "react-redux";
 
 export default function TopBar() {
   const [sidebar, setSidebar] = useState(false);
-  const products = useSelector((state) => state.cart.products);
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
-  const quantity = products.reduce((acc, product) => acc + product.quantity, 0);
+  const quantity = cartItems.reduce(
+    (acc, product) => acc + product.quantity,
+    0
+  );
 
   const showSidebar = () => setSidebar(!sidebar);
 

@@ -2,7 +2,7 @@
     // flex: 1;
     position: sticky;
     position: -webkit-sticky;
-    padding: 0px 20px;  
+    // padding: 0px 10px;  
 
     @include mobile {
         width: 100vw;
@@ -14,7 +14,7 @@
     &_wrapper {
         color: #555;
         border: 1px solid #e6e6e6;
-        border-radius: 5px;
+        border-top-right-radius: 5px;
         h3 {
             padding: 5px 10px;
             font-size: 25px;
@@ -27,19 +27,26 @@
 
             &_item {
                 @include flex(center, space-between);
-                padding: 5px 10px;
+                padding: 10px 10px;
                 border-bottom: 1px solid #e6e6e6;
-
-
-                span {
-                }
-
+                color: black;
+                font-size: 15px;
+                font-weight: 500;  
             }
 
             &_category {
-                padding: 5px 10px;
-                display: flex;
                 align-items: center;
+    
+                li {
+                    padding: 10px 10px;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    color: cadetblue;
+                    font-weight: 400;  
+
+                    border-bottom: 1px solid #e6e6e6;
+                }
             }
             
         }
