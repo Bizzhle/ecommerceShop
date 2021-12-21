@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Menu, Search, ShoppingBagOutlined, Cancel } from "@mui/icons-material";
 import UserMenu from "./UserMenu";
-
 import { Link } from "react-router-dom";
 import { Accordion } from "./Accordion";
 import Links from "./Links";
@@ -41,11 +40,6 @@ export default function TopBar() {
         </div>
         <div className="topbar_container_center">
           <Links />
-          {/* {Mainmenu.map((item) => (
-            <div key={Math.random()} className="topbar_container_center_links">
-              <Link to={item.path}>{item.title}</Link>
-            </div>
-          ))} */}
         </div>
         <div className="topbar_container_right">
           <div className="topbar_container_right_iconContainer">

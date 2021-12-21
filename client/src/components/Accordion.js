@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 export const Accordion = ({ sidebar, showSidebar }) => {
   const [isOpen, setIsOpen] = useState(null);
   const [isDeepOpen, setIsDeepOpen] = useState(null);
-  console.log(sidebar);
 
   const ShowAccordion = (id) => setIsOpen((prev) => (prev === id ? null : id));
   const ShowDeepAccordion = (id) =>

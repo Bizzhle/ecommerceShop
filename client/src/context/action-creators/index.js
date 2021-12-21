@@ -23,7 +23,6 @@ export const removeCartItem = (id) => {
       type: "remove_cartItem",
       id,
     });
-    console.log(id);
   };
 };
 

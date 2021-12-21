@@ -6,13 +6,10 @@
     flex-direction: column;
     max-width: 60%;
     margin: 0 auto;
-   
-    
-   
+
     @include mobile {
         max-width: 100%;
         padding-top: $nav-mobile-height;
-
     }
 
     @include tab {
@@ -24,27 +21,24 @@
     }
 
 
-
     &_container {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-gap: 50px;
-    
-
+        display: flex;
+        margin-top: 10px;
+        
+       
 
         @include mobile {
-            padding: 0px;
-            display: grid;
-            grid-template-columns: 1fr;
-
+            flex-direction: column;
         }
 
         &_image-container {
+            flex: 4;
+            margin-right: 10px;
             background-color: rgb(219, 218, 218);
             padding: 20px;
-            // height: 700px;
             width: 100%;
-            @include flex(center, space-between);
+          
+            @include flex(center, center);
             text-align: center;
     
             @include mobile {
@@ -61,8 +55,9 @@
         }
 
         &_info {
+            flex: 4;
+            overflow-y: auto;
            
-
             &_container {
                
                 @include mobile {
@@ -72,6 +67,7 @@
 
             h3 {
                margin-bottom: 10px; 
+               font-size: 1.5rem;
             }
 
             &_price {
@@ -107,6 +103,16 @@
 
                 li {
                     border-bottom: 1px solid gray;
+                    padding: 8px;
+
+                    p {
+                        line-height: 1.6;
+                    }
+
+                    span {
+                        display: flex;
+                        justify-content: space-between;
+                    }
                 }
 
             }

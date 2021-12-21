@@ -1,11 +1,22 @@
 
 .sidemenu {
     flex: 1;
-    height: calc(100vh - 50px);
+    /* height: calc(100vh - 50px); */
+    min-height: 100vh;
     background-color: rgb(251, 251, 255);
     position: sticky;
     position: -webkit-sticky;
-    top: 50px;
+    /* top: 50px; */
+}
+
+@media screen and (max-width: 415px) {
+    .sidemenu {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
 }
 
 .sidemenuWrapper {

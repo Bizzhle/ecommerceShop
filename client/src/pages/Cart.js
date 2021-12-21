@@ -6,20 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { FaCcMastercard, FaCcPaypal, FaCcVisa } from "react-icons/fa";
 import StripeCheckout from "react-stripe-checkout";
-
 import { useHistory } from "react-router";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../context/index";
 import Footer from "../components/Footer";
 import Newsletter from "../components/Newsletter";
-// import { deleteCartItem, removeCartItem } from "../context/action-creators";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
 export default function Cart() {
-  // const quantity = useSelector((state) => state.cart.quantity);
   const cartItems = useSelector((state) => state.cart.cartItems);
-  // const total = useSelector((state) => state.cart.total);
   const [data, setData] = useState({});
   const [stripeToken, setStripeToken] = useState(null);
   const history = useHistory();
@@ -40,10 +36,6 @@ export default function Cart() {
     actionCreators,
     dispatch
   );
-
-  console.log(cartItems);
-  console.log(quantity);
-  console.log(total);
 
   useEffect(() => {
     const makeRequest = () => {
@@ -70,17 +62,14 @@ export default function Cart() {
 
   const handleDelete = (id) => {
     deleteCartItem(id);
-    console.log("clicked");
   };
 
   const handleAdd = (id) => {
     addQuantity(id);
-    console.log(id);
   };
 
   const handleSub = (id) => {
     removeCartItem(id);
-    console.log(id);
   };
 
   return (
@@ -116,18 +105,18 @@ export default function Cart() {
                             <div className="cart_wrapper_sections__information_info_productDetail_details_amountContainer">
                               <div
                                 className="remove"
-                                onClick={() => handleSub(value.id)}
+                                onClick={() => handleSub(value._id)}
                               >
-                                <BsDashLg style={{ height: 25, width: 25 }} />
+                                <BsDashLg style={{ height: 15, width: 15 }} />
                               </div>
                               <div className="amount">
                                 {quantity >= 1 ? value.quantity : 0}
                               </div>
                               <div
                                 className="add"
-                                onClick={() => handleAdd(value.id)}
+                                onClick={() => handleAdd(value._id)}
                               >
-                                <BsPlusLg style={{ height: 25, width: 25 }} />
+                                <BsPlusLg style={{ height: 15, width: 15 }} />
                               </div>
                             </div>
 
@@ -137,8 +126,9 @@ export default function Cart() {
                           </div>
                           <div className="cart_wrapper_sections__information_info_productDetail_delete">
                             <RiDeleteBin5Line
-                              style={{ width: 35, height: 35 }}
-                              onClick={() => handleDelete(value.id)}
+                              style={{ width: 25, height: 25 }}
+                              onClick={() => handleDelete(value._id)}
+                              className="deletebtn"
                             />
                           </div>
                         </div>
@@ -159,11 +149,14 @@ export default function Cart() {
                   </p>
                 </section>
               )}
-
-              <section className="cart_delivery cart__bg-color">
-                <h3>Estimated Delivery</h3>
-                <p>11.11.2018</p>
-              </section>
+              {quantity <= 0 ? (
+                ""
+              ) : (
+                <section className="cart_delivery cart__bg-color">
+                  <h3>Estimated Delivery</h3>
+                  <p>11.11.2018</p>
+                </section>
+              )}
 
               <section className="cart_delivery cart__bg-color">
                 <h3>We accept</h3>
@@ -219,7 +212,6 @@ export default function Cart() {
         )}
       </div>
       <Newsletter />
-
       <Footer />
     </div>
   );

@@ -7,6 +7,8 @@ export const login = async (dispatch, user) => {
 
   try {
     const res = await publicRequest.post("/users/login", user);
+    localStorage.setItem("jwtToken", res.data.token);
+
     dispatch({
       type: "loginSuccess",
       payload: res.data,

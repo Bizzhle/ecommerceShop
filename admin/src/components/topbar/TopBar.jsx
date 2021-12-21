@@ -1,26 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./topbar.css";
-import { NotificationsNone, Language, Settings} from '@mui/icons-material';
+import { NotificationsNone, Language, Settings, Menu} from '@mui/icons-material';
 
-export default function TopBar() {
+export default function TopBar({openSidemenu}) {
+   
+
     return (
         <div className="topbar">
-            <div className="wrapper">
+            <div className="topbar-wrapper">
                 <div className="left">
+                    <span className="leftMenu">
+                        <Menu className="menu-icon" onClick={openSidemenu} />
+
+                    </span>
                     <span className="logo">
                         Webshopper
                     </span>
                 </div>
 
                 <div className="right">
-                    <div className="iconContainer">
+                    {/* <div className="iconContainer">
                         <NotificationsNone />
                         <span className="iconBadge">2</span>
                     </div>
                     <div className="iconContainer">
                         <Language />
                         <span className="iconBadge">2</span>
-                    </div>
+                    </div> */}
                     <div className="iconContainer">
                         <Settings />
             

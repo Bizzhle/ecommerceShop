@@ -17,18 +17,19 @@ export default function SingleProduct() {
 
 
     const product = useSelector(state => 
-        state.product.products.find((product) => product._id === productId))
-//   console.log(productStats);
+        state.product.products.find((product) => product._id === productId));
+
   const [inputs, setInputs] = useState({product});
   const [title, setTitle] = useState(product.title)
   const [desc, setDesc] = useState(product.desc);
   const [price, setPrice] = useState(product.price);
+  const [inStock, setInStock] = useState("");
+
 
   const products = {...product, title, desc, price}
   const id = productId
-  console.log(products);
 
-        
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -87,28 +88,29 @@ export default function SingleProduct() {
                 <div className="singleProductTopRight">
                         <div className="singleProductInfoTop">
                             <img src={product.img} alt="" className="singleProductInfoImg" />
-                            <span className="singleProductName">{product.title}</span>
                         </div>
-                            <div className="singleProductInfoBottom">
-                                    <div className="singleProductInfoItem">
-                                        <span className="singleProductInfoKey">
-                                            id:
-                                        </span>
-                                        <span className="singleProductInfoValue">{product._id}</span>
-                                    </div>
-                                    <div className="singleProductInfoItem">
-                                        <span className="singleProductInfoKey">
-                                            sales:
-                                        </span>
-                                        <span className="singleProductInfoValue">5000</span>
-                                    </div>
-                                    <div className="singleProductInfoItem">
-                                        <span className="singleProductInfoKey">
-                                            in stock:
-                                        </span>
-                                        <span className="singleProductInfoValue">{product.inStock ? "yes" : "no"}</span>
-                                    </div>
-                            </div>
+                        <div className="singleProductInfoBottom">
+                                <span className="singleProductName">{product.title}</span>
+
+                                <div className="singleProductInfoItem">
+                                    <span className="singleProductInfoKey">
+                                        id:
+                                    </span>
+                                    <span className="singleProductInfoValue">{product._id}</span>
+                                </div>
+                                <div className="singleProductInfoItem">
+                                    <span className="singleProductInfoKey">
+                                        sales:
+                                    </span>
+                                    <span className="singleProductInfoValue">5000</span>
+                                </div>
+                                <div className="singleProductInfoItem">
+                                    <span className="singleProductInfoKey">
+                                        in stock:
+                                    </span>
+                                    <span className="singleProductInfoValue">{product.inStock ? "yes" : "no"}</span>
+                                </div>
+                        </div>
                     </div>
             </div>
             <div className="singleProductBottom">
@@ -123,10 +125,10 @@ export default function SingleProduct() {
                         <label htmlFor="">
                             In Stock
                         </label>
-                        {/* <select  name={product.inStock} id="inStock" placeholder={product.price}>
+                        <select  name="inStock"  id="inStock"   onChange={(e) => setInStock(e.target.value)}> 
                             <option value="true">Yes</option>
                             <option value="false">No</option>
-                        </select> */}
+                        </select>
                     </div> 
                     <div className="singleProductFormRight">
                         <div className="singleProductUpload">

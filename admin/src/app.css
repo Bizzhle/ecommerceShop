@@ -1,7 +1,8 @@
 
 .container {
     display: flex;
-    border: 1px solid red;
+    margin-top: 50px;
+    height: 100%;
 
 }
 
@@ -10,7 +11,11 @@
     background-color: aqua;
 } */
 
-.link{
+.link {
     text-decoration: none;
     color: inherit;
+}
+
+a:active {
+    background-color: aqua;
 }

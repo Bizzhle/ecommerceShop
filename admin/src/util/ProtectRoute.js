@@ -14,8 +14,6 @@ function ProtectRoute({ component: Component, ...rest }) {
       setUser(!user);
     }
   }, [currentUser, user]);
-  console.log(currentUser);
-  // console.log(currentUsers);
 
   return (
     <Route

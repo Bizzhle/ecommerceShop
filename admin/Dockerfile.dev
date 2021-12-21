@@ -1,13 +1,12 @@
-FROM node
+FROM node:14.14.0-alpine
 
-
-LABEL description="Frontend for Webshopper"
+LABEL description="Dashboard for Webshopper"
 WORKDIR /app
-COPY ./package.json ./
+COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install                                                     
 COPY . .
 RUN ls -l
 
-EXPOSE 3000
+EXPOSE 5000
 
 CMD ["npm", "run",  "start"]

@@ -3,7 +3,16 @@
     /* background-color: aqua; */
 }
 
+
 .homeWidgets {
     display: flex;
     margin: 20px;
+}
+
+@media screen and (max-width: 415px) {
+    .home, .homeWidgets {
+        flex-direction: column;
+    }
+
+    
 }

@@ -9,17 +9,12 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
+  whitelist: ["product"],
 };
-
-// const reducers = combineReducers({
-//   product: productReducer,
-//   login: loginReducer,
-// });
 
 const rootReducer = combineReducers({
   product: productReducer,
   login: loginReducer,
 });
 
-// export default reducers;
 export default persistReducer(persistConfig, rootReducer);

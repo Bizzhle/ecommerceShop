@@ -11,8 +11,6 @@ const reducer = (state = initialState, action) => {
     case "add":
       return {
         ...state,
-
-        // cartItems: [...state.products, action.payload],
         cartItems: addItemToCart(state.cartItems, action.id),
       };
 
@@ -20,7 +18,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cartItems: state.cartItems.map((cartItem) =>
-          cartItem.id === action.id
+          cartItem._id === action.id
             ? {
                 ...cartItem,
                 quantity: cartItem.quantity + 1,
@@ -32,23 +30,23 @@ const reducer = (state = initialState, action) => {
     case "remove_cartItem":
       return {
         ...state,
-        cartItems: state.cartItems.map((cartItem) =>
-          cartItem.id === action.id
-            ? {
-                ...cartItem,
-                quantity: cartItem.quantity - 1,
-              }
-            : cartItem
-        ),
-        // cartItems: removeItemFromCart(state.cartItems, action.id),
+
+        // cartItems: state.cartItems.map((cartItem) =>
+        //   cartItem._id === action.id
+        //     ? {
+        //         ...cartItem,
+        //         quantity: cartItem.quantity - 1,
+        //       }
+        //     : cartItem
+        // ),
+        cartItems: removeItemFromCart(state.cartItems, action.id),
       };
 
     case "delete_cartItem":
       return {
         ...state,
-
         cartItems: state.cartItems.filter(
-          (cartItem) => cartItem.id !== action.id
+          (cartItem) => cartItem._id !== action.id
         ),
       };
     case "clear":

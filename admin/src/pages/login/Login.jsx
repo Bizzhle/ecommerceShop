@@ -15,7 +15,7 @@ export const Login = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
-    console.log(location);
+
 
 
     const handleClick = (e) => {
@@ -34,11 +34,14 @@ export const Login = (props) => {
 
     return (
         <div className="login">
-            <input type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
-            <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={handleClick} className="loginButton">
-                Login
-            </button>
+            <div className="wrapper">
+                <input type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
+                <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
+                <button onClick={handleClick} className="loginButton">
+                    Login
+                </button>
+            </div>
+            
 
         </div>
     )

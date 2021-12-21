@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./app.css";
 import Sidemenu from "./components/sidemenu/Sidemenu";
 import TopBar from "./components/topbar/TopBar";
@@ -22,7 +22,9 @@ import ProtectRoute from "./util/ProtectRoute";
 
 function App() {
   const { currentUser } = useSelector((state) => state.login);
-  console.log(currentUser);
+
+  const [sidemenu, setSidemenu] = useState(false);
+  const openSidemenu = () => setSidemenu(!sidemenu);
 
   return (
     <Router>
@@ -30,9 +32,9 @@ function App() {
         <ProtectRoute path="/login" component={Login} />
         {currentUser ? (
           <>
-            <TopBar />
+            <TopBar openSidemenu={openSidemenu} />
             <div className="container">
-              <Sidemenu />
+              <Sidemenu openSidemenu={openSidemenu} sidemenu={sidemenu} />
               <Route exact path="/">
                 <Home />
               </Route>

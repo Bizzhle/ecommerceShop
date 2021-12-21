@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators } from "../context/index";
 import { bindActionCreators } from "redux";
 import Footer from "./Footer";
+import Newsletter from "./Newsletter";
+
 import { publicRequest } from "../requestMethods";
 
 export default function SingleProduct() {
@@ -24,21 +26,17 @@ export default function SingleProduct() {
 
   useEffect(() => {
     const fetchProductData = async () => {
-      // const response = await fetch(`https://fakestoreapi.com/products/${id}`);
       const res = await publicRequest.get(`/products/find/${id}`);
       const data = await res.data;
       setProducts(data);
     };
 
     fetchProductData();
-    // dispatch(getProductId(id));
   }, [id]);
 
   const handleClick = (id) => {
     addProduct(id);
   };
-
-  const title = "choose your size";
 
   return (
     <div className="">
@@ -58,7 +56,6 @@ export default function SingleProduct() {
                 <p className="">VAT included</p>
               </div>
 
-              <SelectBar title={title} />
               <button
                 className="single-product_container_info_button"
                 onClick={() => handleClick(products)}
@@ -66,11 +63,7 @@ export default function SingleProduct() {
                 Add to bag
               </button>
 
-              {/* <button className="single-product_container_info_button">
-              go to bag
-            </button> */}
-
-              <div className="single-product_container_info_card-info border-gray-400 border mt-12">
+              <div className="single-product_container_info_card-info ">
                 <ul className="">
                   <li className="border-b border-gray-400   p-4 text-center">
                     shipped by webshopper
@@ -78,19 +71,19 @@ export default function SingleProduct() {
                   <li className="border-b border-gray-400 p-4">
                     <p>fast delivery</p>
                     <p>1-3 working day</p>
-                    <ul className="flex justify-between">
-                      <li>Fast delivery</li>
-                      <li>10 EUR</li>
-                    </ul>
+                    <span className="flex justify-between">
+                      <p>Fast delivery</p>
+                      <p>10 EUR</p>
+                    </span>
                   </li>
 
                   <li className="border-b border-gray-400 p-4">
                     <p>deliver</p>
-                    3-5 working days
-                    <ul className="flex justify-between">
-                      <li>Standard delivery</li>
-                      <li>Free</li>
-                    </ul>
+                    <p>3-5 working days</p>
+                    <span className="flex justify-between">
+                      <products>Standard delivery</products>
+                      <p>Free</p>
+                    </span>
                   </li>
 
                   <li className="border-b border-gray-400 p-4">
@@ -114,38 +107,15 @@ export default function SingleProduct() {
               </div>
               {isOpen && (
                 <div className="accordion-panel">
-                  <p>{products.description}</p>
+                  <p>{products.desc}</p>
                 </div>
               )}
             </div>
-
-            {/* <div onClick={() => setIsOpen(!isOpen)}>
-            <div className="accordion flex justify-between w-full border-t bg-white active:bg-gray-400 hover:bg-gray-400 text-black font-semibold text-left text-lg cursor-pointer p-4  transition duration-150">
-              <span>Details and features</span>{" "}
-              <span>{!isOpen ? <AiOutlineDown /> : <AiOutlineUp />}</span>
-            </div>
-            {isOpen && (
-              <div class="panel px-4 bg-white overflow-hidden">
-                <p>
-                  "Fully unlocked and compatible with any carrier of choice
-                  (e.g. AT&T, T-Mobile, Sprint, Verizon, US-Cellular, Cricket,
-                  Metro, etc.)." 1:"The device does not come with headphones or
-                  a SIM card. It does include a charger and charging cable that
-                  may be generic, in which case it will be UL or Mfi (Made for
-                  iPhone) Certified." 2:"Inspected and guaranteed to have
-                  minimal cosmetic damage, which is not noticeable when the
-                  device is held at arms length." 3:"Successfully passed a full
-                  diagnostic test which ensures like-new functionality and
-                  removal of any prior-user personal information." 4:"Tested for
-                  battery health and guaranteed to have a minimum battery
-                  capacity of 80%.
-                </p>
-              </div>
-            )}
-          </div> */}
           </div>
         </div>
       </div>
+      <Newsletter />
+
       <div className="footer">
         <Footer />
       </div>

@@ -9,8 +9,7 @@
     @include mobile {
         padding-top: $nav-mobile-height;
         max-width: 100%;
-       
-
+    
     }
 
     @include tab {
@@ -44,9 +43,7 @@
 
             &__information {
            
-           
-
-                
+ 
                 h1 {
                     margin: 20px 0;
                 }
@@ -58,7 +55,7 @@
                 &_reserved {
                     display: flex;
                     margin: 10px 0;
-
+           
                     p {
                         margin: 0 5px;
                     }
@@ -67,31 +64,40 @@
                 &_info {
                     margin-top: 10px;
                     display: flex;
-        
+                    
                     .image {
-                        width: 150px;
+                        flex: 1;
                        
-                        // background: rgb(190, 187, 187);
+                        @include mobile {
+                            flex: 2;
+                        }
+                       
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: center;
+                        }
+                        
                     }
                     
         
                     &_productDetail {
+                        flex: 1;
                         width: 100%;
-                        margin-left: 10px;
                         display: grid;
                         grid-template-columns: 2fr 1fr;
-                        // @include flex(center, space-between);
-                        padding: 10px;
-           
+                        padding: 0 0 0 20px;
 
         
                         @include mobile {
+                            flex: 1;
                             display: grid;
                             grid-template-columns: 1fr;
+
                         }
 
-                        &_details {
-         
+                        &_details {              
 
                             p {
                                 font-size: 1.5rem;
@@ -99,19 +105,20 @@
                             }
 
                             &_amountContainer {
-                                width: 150px;
                                 margin:  10px 0;
-
-                       
-                                @include flex(center, space-between);
+                                @include flex(center, flex-start );
                 
                                 .amount {
-                                    padding: 7px 20px;
-                                    margin: 0 10px;
+                                    padding: 5px 10px;
+                                    margin: 0 15px;
                                     border: 3px solid black;
                                     border-radius: 5px;
-                                    font-size: 1.25rem;
+                                    font-size: 1rem;
                                     font-weight: 400;
+                                }
+
+                                .remove, .add {
+                                    cursor: pointer;
                                 }
 
                                 
@@ -125,6 +132,12 @@
         
                         &_delete {
                             text-align: right;
+                           
+
+                            .deletebtn:hover {
+                                cursor: pointer;
+                                color: red;
+                            }
         
                             @include mobile {
                                 // @include flex(flex-start, space-between);
@@ -134,10 +147,7 @@
                     }
                 }
         
-                img {
-                    width: 100%;
-                    height: 150px;
-                }
+              
             }
 
         }
@@ -147,21 +157,16 @@
         background-color: #fff;
         margin: 20px;
         padding: 30px;
+
+        // p {
+        //     text-decoration: underline;
+        // }
         
         @include mobile {
             margin: 10px;
             padding: 10px;
         }
-        
-        // @include tab {   
-        //     margin: 20px;
-        //     padding: 20px;
-        // }
-
-        // @include tablet {
-        //     margin: 20px;
-        //     padding: 20px;
-        // }
+      
 
     }
 

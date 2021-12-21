@@ -16,15 +16,15 @@ import { Link } from 'react-router-dom';
 
 
 
-export default function Sidemenu() {
+export default function Sidemenu({sidemenu, openSidemenu}) {
     return (
-        <div className="sidemenu">
+        <div className={sidemenu ? "sidemenu active" : "sidemenu"} onClick={openSidemenu} >
             <div className="sidemenuWrapper">
                 <div className="sidebarMenu">
                     <h3 className="sidebarTitle">Dashboard</h3>
                     <ul className="sidebarList">
                         <Link to="/" className="link">
-                        <li className="sidebarListItem active">
+                        <li className="sidebarListItem">
                             <LineStyle className="siderbarIcon " />
                             Home 
                         </li>

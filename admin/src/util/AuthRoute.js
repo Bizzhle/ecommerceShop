@@ -8,9 +8,6 @@ import { useSelector } from "react-redux";
 function AuthRoute({ component: Component, ...rest }) {
   const { currentUser } = useSelector((state) => state.login);
 
-  console.log(currentUser);
-  // console.log(currentUsers);
-
   return (
     <Route
       {...rest}

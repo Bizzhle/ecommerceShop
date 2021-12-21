@@ -1,6 +1,41 @@
 version: '3.9'
 services:
+  nginx:
+    restart: always
+    depends_on:
+      - dashboard
+      - client
+      - webshop
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - webshopper
+
+  dashboard:
+    restart: always
+    build: 
+      context: ./admin
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5000:3000"
+    volumes:
+      - ./admin:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    depends_on:
+      - webshop
+    networks:
+      - webshopper
+
+
   client:
+    restart: always
     build: 
       context: ./client
       dockerfile: Dockerfile.dev
@@ -12,20 +47,28 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     stdin_open: true
+    depends_on:
+      - webshop
+    networks:
+      - webshopper
 
   webshop:
     build:
       context: ./server
       dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
     volumes:
       - ./server/:/app
       - /app/node_modules
     environment:
       MONGO_USER: ${MONGO_USER}
       MONGO_PASSWORD: ${MONGO_PASSWORD}
-   
+    networks:
+      - webshopper
 
-  mongo:
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+
+
+networks:
+  webshopper:
+    driver: bridge

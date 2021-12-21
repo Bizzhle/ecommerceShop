@@ -6,8 +6,7 @@ import { userRequest } from '../../requestMethods';
 export default function FeaturedInfo() {
     const [income, setIncome] = useState([]);
     const [percentage, setPercentage] = useState(0);
-    // console.log(income[0].total);
-    console.log(income);
+
     
 
     useEffect(() => {

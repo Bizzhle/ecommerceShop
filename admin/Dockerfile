@@ -1,12 +1,21 @@
-FROM node
+# get the base node image
+FROM node:14 as builder
 
-LABEL description="Dashboard for Webshopper"
-WORKDIR /app
-COPY ["package.json", "package-lock.json*", "./"]
-RUN npm install                                                     
+# set the working dir for container
+WORKDIR /usr/src/app
+
+# copy the json file first
+COPY package.json .
+
+# install npm dependencies
+RUN npm install
+
+# copy other project files
 COPY . .
-RUN ls -l
+
+# build the folder
+RUN npm run build
 
 EXPOSE 5000
 
-CMD ["npm", "run",  "start"]
+CMD ["npm", "start"]

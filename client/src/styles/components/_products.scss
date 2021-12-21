@@ -2,6 +2,7 @@
 .products {
     min-height: 100vh;
     padding-top: $nav-height;
+    overflow: auto;
     
 
     @include mobile {

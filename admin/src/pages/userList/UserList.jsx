@@ -1,6 +1,7 @@
 import React, { useState} from 'react'
 import "./userlist.css";
 import { DataGrid } from '@mui/x-data-grid';
+import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom'
 import {DeleteOutline} from '@mui/icons-material';
 import { userRows } from "../../dummydata";
@@ -61,15 +62,27 @@ export default function UserList() {
       
       
     return (
+    
         <div className="userList">
-             <DataGrid
-            rows={data}
-            columns={columns}
-            pageSize={8}
-            rowsPerPageOptions={[5]}
-            checkboxSelection
-            disableSelectionOnClick
-            />
+           <Box
+              sx={{
+                height: 400,
+                width: 1,
+                '& .MuiDataGrid-cell--editable': {
+                  bgcolor: (theme) =>
+                    theme.palette.mode === 'dark' ? '#376331' : 'rgb(217 243 190)',
+                },
+              }}
+            >
+              <DataGrid
+              rows={data}
+              columns={columns}
+              pageSize={8}
+              rowsPerPageOptions={[5]}
+              // checkboxSelection
+              // disableSelectionOnClick
+              />
+            </Box>
         </div>
     )
 }

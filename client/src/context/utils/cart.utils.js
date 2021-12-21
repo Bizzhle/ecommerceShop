@@ -17,52 +17,49 @@ export const addItemToCart = (products, productToAdd) => {
 
 export const removeItemFromCart = (products, productToRemove) => {
   const existingProduct = products.find(
-    (product) => product._id === productToRemove._id
+    (product) => product._id === productToRemove
   );
-  console.log(existingProduct);
 
   if (existingProduct.quantity === 1) {
-    return products.filter((product) => product.id !== productToRemove.id);
+    return products.filter((product) => product._id !== productToRemove);
   }
 
   return products.map((product) =>
-    product.id === productToRemove.id
+    product._id === productToRemove
       ? { ...product, quantity: product.quantity - 1 }
-      : products
+      : product
   );
 };
 
-export const addQuantityToCart = (products, productToAdd) => {
-  const existingProduct = products.findIndex(
-    (product) => product.id === productToAdd.id
-  );
-  console.log(existingProduct);
+// export const addQuantityToCart = (products, productToAdd) => {
+//   const existingProduct = products.findIndex(
+//     (product) => product.id === productToAdd.id
+//   );
 
-  if (existingProduct) {
-    return products.map((product) =>
-      product.id === productToAdd.id
-        ? { ...product, quantity: product.quantity + 1 }
-        : product
-    );
-  }
+//   if (existingProduct) {
+//     return products.map((product) =>
+//       product.id === productToAdd.id
+//         ? { ...product, quantity: product.quantity + 1 }
+//         : product
+//     );
+//   }
 
-  return {
-    ...products,
-    products: [...products, productToAdd],
-  };
-};
+//   return {
+//     ...products,
+//     products: [...products, productToAdd],
+//   };
+// };
 
-export const deleteItemFromCart = (products, productToRemove) => {
-  const existingProduct = products.find(
-    (product) => product.id === productToRemove.id
-  );
-  console.log(existingProduct);
+// export const deleteItemFromCart = (products, productToRemove) => {
+//   const existingProduct = products.find(
+//     (product) => product.id === productToRemove.id
+//   );
 
-  if (existingProduct) {
-    return products.filter((product) => product.id !== productToRemove.id);
-  }
+//   if (existingProduct) {
+//     return products.filter((product) => product.id !== productToRemove.id);
+//   }
 
-  return products.map((product) =>
-    product.id === productToRemove.id ? { ...product, quantity: 1 } : products
-  );
-};
+//   return products.map((product) =>
+//     product.id === productToRemove.id ? { ...product, quantity: 1 } : products
+//   );
+// };
